@@ -126,23 +126,6 @@ def format_transcription_with_speakers(transcript_data):
     
     return "\n\n".join(formatted_text)
 
-@app.route('/api/submit', methods=['POST'])
-def submit_job():
-    """Endpoint para receber o folder_id"""
-    if not request.is_json:
-        return jsonify({"error": "Request must be JSON"}), 400
-    
-    data = request.get_json()
-    folder_id = data.get('folder_id')
-    
-    if not folder_id:
-        return jsonify({"error": "folder_id is required"}), 400
-    
-    return jsonify({
-        "message": "Folder ID received successfully",
-        "folder_id": folder_id
-    }), 200
-
 @app.route('/api/transcriptions', methods=['POST'])
 def get_transcriptions():
     """Endpoint para processar e retornar as transcrições com diarização"""

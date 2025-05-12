@@ -42,9 +42,9 @@ def authenticate_with_oauth2():
     return creds
 
 def list_files_in_folder(service, folder_id):
-    """Lista arquivos filtrando por extensão de áudio"""
+    """Lista arquivos filtrando por extensão de áudio e pelo ID do projeto 822"""
     results = service.files().list(
-        q=f"'{folder_id}' in parents and (name contains '.wav' or name contains '.mp3' or name contains '.m4a')",
+        q=f"'{folder_id}' in parents and (name contains '.wav'  ) and name contains '_822_'",
         fields="files(id, name, mimeType, createdTime, modifiedTime)"
     ).execute()
     return results.get('files', [])
